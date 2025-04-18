@@ -6,7 +6,6 @@
 #define MAX_WORDS 1000
 #define WORD_LEN 50
 
-// Function to clean and normalize a word
 void normalize(char *word) {
     int i, j = 0;
     char temp[WORD_LEN];
@@ -18,8 +17,6 @@ void normalize(char *word) {
     temp[j] = '\0';
     strcpy(word, temp);
 }
-
-// Check if a word is already in the list
 int is_in_list(char words[][WORD_LEN], int size, const char *word) {
     for (int i = 0; i < size; i++) {
         if (strcmp(words[i], word) == 0)
@@ -27,15 +24,12 @@ int is_in_list(char words[][WORD_LEN], int size, const char *word) {
     }
     return 0;
 }
-
-// Extract unique words from file
 int extract_words(const char *filename, char words[][WORD_LEN]) {
     FILE *file = fopen(filename, "r");
     if (!file) {
         printf("Error opening file: %s\n", filename);
         return -1;
     }
-
     char word[WORD_LEN];
     int count = 0;
 
@@ -45,12 +39,9 @@ int extract_words(const char *filename, char words[][WORD_LEN]) {
             strcpy(words[count++], word);
         }
     }
-
     fclose(file);
     return count;
 }
-
-// Calculate Jaccard similarity
 float jaccard_similarity(char words1[][WORD_LEN], int count1, char words2[][WORD_LEN], int count2) {
     int intersection = 0;
 
